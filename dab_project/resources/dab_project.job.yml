@@ -19,10 +19,24 @@ resources:
           job_cluster_key: job_cluster
           notebook_task:
             notebook_path: ../src/notebook.ipynb
+
+      tasks:
+        - task_key: notebook_task2
+          job_cluster_key: job_cluster
+          notebook_task:
+            notebook_path: ../src/notebook.ipynb
+
+      tasks:
+        - task_key: notebook_task3
+          job_cluster_key: job_cluster
+          notebook_task:
+            notebook_path: ../src/notebook.ipynb
         
         - task_key: refresh_pipeline
           depends_on:
             - task_key: notebook_task
+            - task_key: notebook_task2
+            - task_key: notebook_task3
           pipeline_task:
             pipeline_id: ${resources.pipelines.dab_project_pipeline.id}
         
